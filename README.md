@@ -8,3 +8,6 @@ second.py  defines and tests a moving_average() function that calculates a simpl
 
 fourthplot.py code visualizes the data using a line plot, the blue line shows the temperature trend over time, red dots highlight extreme high days, and black dots mark extreme low days, while a green dashed line indicates the mean temperature.
 
+The third.py code mostly focus about  a linear trend analysis using least-squares regression for each variable. The results (slope, R², and p-values) quantify the strength and direction of long-term changes.Several plots are generated for visualization such as Time-series plots showing daily average values for temperature, humidity, and noise and
+Trendline overlays (in dashed green) showing the fitted linear regression for each variable.
+
