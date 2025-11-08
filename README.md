@@ -6,3 +6,5 @@ and visualizes the daily average temperature trend.The plot below shows the dail
 
 second.py  defines and tests a moving_average() function that calculates a simple moving average for a given pandas Series using a specified window size. After verifying the function with a small unit test, it applies a 5-day moving average to the temperature column in df_daily. Finally, it plots both the daily temperature and the moving average on the same graph and saves the plot as second.pdf
 
+fourthplot.py code visualizes the data using a line plot, the blue line shows the temperature trend over time, red dots highlight extreme high days, and black dots mark extreme low days, while a green dashed line indicates the mean temperature.
+
