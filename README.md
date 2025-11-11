@@ -12,3 +12,5 @@ The third.py code mostly focus about  a linear trend analysis using least-square
 Trendline overlays (in dashed green) showing the fitted linear regression for each variable.
 
 The seventh.py shows the multi-panel figure of daily temperature, humidity, and noise levels with 5-day moving averages (red) highlighting trends. Mean values and ±1\sigma thresholds mark normal ranges, while black points indicate extreme deviations, clearly illustrating variability and anomalies in each variable.
+
+The ninth.py  first calculates the mean, standard deviation, and upper/lower thresholds, then plots a histogram of daily temperatures with a fitted KDE curve to show the overall distribution.
