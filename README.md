@@ -11,3 +11,4 @@ fourthplot.py code visualizes the data using a line plot, the blue line shows th
 The third.py code mostly focus about  a linear trend analysis using least-squares regression for each variable. The results (slope, R², and p-values) quantify the strength and direction of long-term changes.Several plots are generated for visualization such as Time-series plots showing daily average values for temperature, humidity, and noise and
 Trendline overlays (in dashed green) showing the fitted linear regression for each variable.
 
+The seventh.py shows the multi-panel figure of daily temperature, humidity, and noise levels with 5-day moving averages (red) highlighting trends. Mean values and ±1\sigma thresholds mark normal ranges, while black points indicate extreme deviations, clearly illustrating variability and anomalies in each variable.
