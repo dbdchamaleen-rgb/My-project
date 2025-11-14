@@ -1,3 +1,4 @@
+# %%
 # Import Required Libraries
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,6 +9,9 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from math import sqrt
 import warnings
 warnings.filterwarnings("ignore")
+
+
+# %%
 # Load the dataset
 df = pd.read_csv("C:/Users/dbdch/OneDrive/Desktop/Project progress/mongo_export.csv")
 
@@ -29,10 +33,16 @@ df_daily = df_daily.ffill()
 
 # Quick check
 print(df_daily.head())
+
+
+# %%
 plt.style.use('seaborn-v0_8-whitegrid')
 plt.figure(figsize=(12, 6))
 plt.plot(df_daily.index, df_daily['temperature'], color='steelblue', linewidth=2)
-plt.title("Daily Average Temperature Over Time", fontsize=14)
-plt.xlabel("Date")
-plt.ylabel("Temperature (°C)")
+plt.title("Daily Average Temperature Over Time", fontsize=20)
+plt.xlabel("Date",fontsize=20)
+plt.ylabel("Temperature (°C)",fontsize=20)
+plt.savefig('first plot.pdf')
 plt.show()
+
+
