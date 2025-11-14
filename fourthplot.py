@@ -60,10 +60,10 @@ plt.scatter(df_daily.loc[df_daily['Extreme_High']].index,
 plt.scatter(df_daily.loc[df_daily['Extreme_Low']].index,
             df_daily.loc[df_daily['Extreme_Low'], 'temperature'], color='k', label='Extreme Lows')
 plt.axhline(mean_temp, color='green', linestyle='--', label='Mean Temperature',linewidth=3)
-plt.title("Extreme Temperature Days")
-plt.xlabel("Date")
-plt.ylabel("Temperature (°C)")
-plt.legend()
+plt.title("Extreme Temperature Days",fontsize=20)
+plt.xlabel("Date",fontsize=20)
+plt.ylabel("Temperature (°C)",fontsize=20)
+plt.legend(fontsize=15)
 plt.savefig('fourth.pdf')
 plt.show()
 
