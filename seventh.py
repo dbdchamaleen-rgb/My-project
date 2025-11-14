@@ -89,7 +89,7 @@ print(f"Temperature mean={mu:.3f}, std={sigma:.3f}, extremes (1sigma) count={fla
 # 8) Multi-panel figure (stacked) showing daily series, 5-day MA, and extremes for each variable
 def panel_plot_multi(df_daily, ks=[1.0], ma_window=5, savepath="multi_panel_figure.pdf"):
     vars_ = ['temperature','humidity','noice']
-    fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12,10), sharex=True)
+    fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12,11), sharex=True)
     for ax, var in zip(axes, vars_):
         ax.plot(df_daily.index, df_daily[var], color='b', linewidth=2, label=f'{var} (daily mean)')
         ax.plot(df_daily.index, moving_average(df_daily[var], window=ma_window), color='r', linewidth=3, label=f'{ma_window}-day MA')
@@ -100,10 +100,12 @@ def panel_plot_multi(df_daily, ks=[1.0], ma_window=5, savepath="multi_panel_figu
         ax.axhline(mu, color='green', linestyle='--', linewidth=3, label=f'Mean ({mu:.2f})')
         ax.axhline(upper, color='m', linestyle='dotted', linewidth=3, label=f'Upper {k}sigma ({upper:.2f})')
         ax.axhline(lower, color='y', linestyle='-.', linewidth=3, label=f'Lower {k}sigma ({lower:.2f})')
-        ax.set_ylabel(var.capitalize())
-        ax.legend(loc='upper right')
-    axes[-1].set_xlabel("Date")
-    plt.suptitle("Daily Environment Variables — extremes and 5-day moving average")
+        ax.set_ylabel(var.capitalize(),fontsize=20)
+        ax.legend(bbox_to_anchor=(0, 1.02, 1.2, 0.2), loc='lower left',
+             mode='expand', borderaxespad=2, ncol=4,fontsize=15)
+       # ax.legend(loc='upper right',fontsize=15)
+    axes[-1].set_xlabel("Date",fontsize=20)
+    plt.suptitle("Daily Environment Variables — extremes and 5-day moving average",fontsize=20)
     plt.tight_layout(rect=[0,0,1,0.96])
     fig.savefig(savepath,dpi=300)
     plt.show()
