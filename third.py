@@ -115,6 +115,7 @@ flags, mu, sigma, upper, lower = identify_extremes(df_daily['temperature'], k=1.
 print(f"Temperature mean={mu:.3f}, std={sigma:.3f}, extremes (1sigma) count={flags.sum()}")
 
 
+
 # %%
 # 5) Sensitivity analysis: counts of extreme days as k varies
 ks = [0.5, 1.0, 1.5, 2.0, 2.5]
@@ -164,10 +165,10 @@ for col in ['temperature','humidity','noice']:
     plt.figure(figsize=(12,6))
     plt.plot(df_trend.index, df_trend[col], color='b', linewidth=2, label='Daily mean')
     plt.plot(df_trend.index, intercept + slope * df_trend['days'], color='g', linewidth=3,linestyle='--', label=f'Linear trend (slope={slope:.4e})')
-    plt.title(f"{col.capitalize()} with linear trend")
-    plt.xlabel("Date")
-    plt.ylabel(col.capitalize())
-    plt.legend()
+    plt.title(f"{col.capitalize()} with linear trend",fontsize=20)
+    plt.xlabel("Date",fontsize=20)
+    plt.ylabel(col.capitalize(),fontsize=20)
+    plt.legend(fontsize=15)
     plt.tight_layout()
     plt.savefig('third.pdf')
     plt.show()
