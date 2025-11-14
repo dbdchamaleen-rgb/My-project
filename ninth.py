@@ -134,10 +134,10 @@ plt.axvline(lower, color='y', linestyle='-.', linewidth=2, label=f'Lower = {lowe
 plt.scatter(df_daily['temperature'][flags], [0]*flags.sum(), color='black', zorder=5, label='Extremes')
 
 # Add labels and legend
-plt.title("Temperature Distribution with ±1sigma Thresholds")
-plt.xlabel("Temperature")
-plt.ylabel("Frequency")
-plt.legend()
+plt.title("Temperature Distribution with ±1sigma Thresholds",fontsize=20)
+plt.xlabel("Temperature",fontsize=20)
+plt.ylabel("Frequency",fontsize=20)
+plt.legend(fontsize=15)
 plt.tight_layout()
 plt.show()
 
