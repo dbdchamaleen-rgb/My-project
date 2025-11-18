@@ -16,3 +16,5 @@ The seventh.py shows the multi-panel figure of daily temperature, humidity, and 
 The ninth.py  first calculates the mean, standard deviation, and upper/lower thresholds, then plots a histogram of daily temperatures with a fitted KDE curve to show the overall distribution.
 
 The eight.py file visualizes how the number of extreme days changes with different threshold values 𝑘 for three variables,temperature, humidity, and noise. For each variable, it counts how many days exceed ±𝑘 standard deviations from the mean.
+
+sixth.py file contains  the correlation matrix for temperature, humidity, and noise. The matrix shows the strength and direction of the linear relationships between each pair of variables. A heatmap was then generated to visually represent these correlations, where warmer colors indicate positive relationships and cooler colors indicate negative ones. This helps identify which variables move together and which behave independently.
