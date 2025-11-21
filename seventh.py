@@ -23,12 +23,12 @@ csv_path = "C:/Users/dbdch/OneDrive/Desktop/Project progress/mongo_export.csv"
 df = pd.read_csv(csv_path)
 
 # expected columns 
-expected = {'position','temperature','humidity','noice','time','createdAt','updatedAt','__v'}
+expected = {'position','temperature','humidity','noise','time','createdAt','updatedAt','__v'}
 missing = expected - set(df.columns)
 if missing:
     print("Warning: dataset missing columns:", missing)
 #  proceed with columns we have; require 'time' and the three variables
-required = {'time','temperature','humidity','noice'}
+required = {'time','temperature','humidity','noise'}
 if not required.issubset(df.columns):
     raise ValueError(f"Required columns missing: {required - set(df.columns)}")
 
@@ -37,7 +37,7 @@ df['time'] = pd.to_datetime(df['time'], errors='coerce')
 df = df.set_index('time').sort_index()
 
 # convert to numeric
-df = df[['temperature','humidity','noice']].apply(pd.to_numeric, errors='coerce')
+df = df[['temperature','humidity','noise']].apply(pd.to_numeric, errors='coerce')
 
 # Resample to daily averages (daily means)
 df_daily = df.resample('D').mean()
@@ -88,7 +88,7 @@ print(f"Temperature mean={mu:.3f}, std={sigma:.3f}, extremes (1sigma) count={fla
 # %%
 # 8) Multi-panel figure (stacked) showing daily series, 5-day MA, and extremes for each variable
 def panel_plot_multi(df_daily, ks=[1.0], ma_window=5, savepath="multi_panel_figure.pdf"):
-    vars_ = ['temperature','humidity','noice']
+    vars_ = ['temperature','humidity','noise']
     fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12,11), sharex=True)
     for ax, var in zip(axes, vars_):
         ax.plot(df_daily.index, df_daily[var], color='b', linewidth=2, label=f'{var} (daily mean)')
