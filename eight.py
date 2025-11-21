@@ -23,12 +23,12 @@ csv_path = "C:/Users/dbdch/OneDrive/Desktop/Project progress/mongo_export.csv"
 df = pd.read_csv(csv_path)
 
 # expected columns 
-expected = {'position','temperature','humidity','noice','time','createdAt','updatedAt','__v'}
+expected = {'position','temperature','humidity','noise','time','createdAt','updatedAt','__v'}
 missing = expected - set(df.columns)
 if missing:
     print("Warning: dataset missing columns:", missing)
 #  proceed with columns we have; require 'time' and the three variables
-required = {'time','temperature','humidity','noice'}
+required = {'time','temperature','humidity','noise'}
 if not required.issubset(df.columns):
     raise ValueError(f"Required columns missing: {required - set(df.columns)}")
 
@@ -37,7 +37,7 @@ df['time'] = pd.to_datetime(df['time'], errors='coerce')
 df = df.set_index('time').sort_index()
 
 # convert to numeric
-df = df[['temperature','humidity','noice']].apply(pd.to_numeric, errors='coerce')
+df = df[['temperature','humidity','noise']].apply(pd.to_numeric, errors='coerce')
 
 # Resample to daily averages (daily means)
 df_daily = df.resample('D').mean()
@@ -89,7 +89,7 @@ print(f"Temperature mean={mu:.3f}, std={sigma:.3f}, extremes (1sigma) count={fla
 # 5) Sensitivity analysis: counts of extreme days as k varies
 ks = [0.5, 1.0, 1.5, 2.0, 2.5]
 sensitivity_rows = []
-for col in ['temperature','humidity','noice']:
+for col in ['temperature','humidity','noise']:
     for k in ks:
         flags, mu, sigma, upper, lower = identify_extremes(df_daily[col], k=k)
         sensitivity_rows.append({
@@ -114,7 +114,7 @@ print("Saved extremes_sensitivity_counts.csv")
 # 6) Visualize sensitivity: count of extreme days vs k for each variable
 plt.figure(figsize=(12,6))
 colors = ['b', 'r', 'g']
-for col, color in zip(['temperature', 'humidity', 'noice'], colors):
+for col, color in zip(['temperature', 'humidity', 'noise'], colors):
     counts = []
     for k in ks:
         flags, _, _, _, _ = identify_extremes(df_daily[col], k=k)
