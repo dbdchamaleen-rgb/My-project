@@ -24,12 +24,12 @@ csv_path = "C:/Users/dbdch/OneDrive/Desktop/Project progress/mongo_export.csv"
 df = pd.read_csv(csv_path)
 
 # expected columns 
-expected = {'position','temperature','humidity','noice','time','createdAt','updatedAt','__v'}
+expected = {'position','temperature','humidity','noise','time','createdAt','updatedAt','__v'}
 missing = expected - set(df.columns)
 if missing:
     print("Warning: dataset missing columns:", missing)
 #  proceed with columns we have; require 'time' and the three variables
-required = {'time','temperature','humidity','noice'}
+required = {'time','temperature','humidity','noise'}
 if not required.issubset(df.columns):
     raise ValueError(f"Required columns missing: {required - set(df.columns)}")
 
@@ -38,7 +38,7 @@ df['time'] = pd.to_datetime(df['time'], errors='coerce')
 df = df.set_index('time').sort_index()
 
 # convert to numeric
-df = df[['temperature','humidity','noice']].apply(pd.to_numeric, errors='coerce')
+df = df[['temperature','humidity','noise']].apply(pd.to_numeric, errors='coerce')
 
 # Resample to daily averages (daily means)
 df_daily = df.resample('D').mean()
@@ -73,7 +73,7 @@ def compute_statistics(series):
     }
 
 # Example usage and print neatly
-for col in ['temperature','humidity','noice']:
+for col in ['temperature','humidity','noise']:
     stats = compute_statistics(df_daily[col])
     print(f"\n--- {col.upper()} ---")
     for k,v in stats.items():
@@ -120,7 +120,7 @@ print(f"Temperature mean={mu:.3f}, std={sigma:.3f}, extremes (1sigma) count={fla
 # 5) Sensitivity analysis: counts of extreme days as k varies
 ks = [0.5, 1.0, 1.5, 2.0, 2.5]
 sensitivity_rows = []
-for col in ['temperature','humidity','noice']:
+for col in ['temperature','humidity','noise']:
     for k in ks:
         flags, mu, sigma, upper, lower = identify_extremes(df_daily[col], k=k)
         sensitivity_rows.append({
@@ -147,7 +147,7 @@ df_trend = df_daily.copy()
 df_trend['days'] = (df_trend.index - df_trend.index.min()).days
 
 trend_results = []
-for col in ['temperature','humidity','noice']:
+for col in ['temperature','humidity','noise']:
     mask = df_trend[col].notna()
     x = df_trend['days'][mask].values
     y = df_trend[col][mask].values
