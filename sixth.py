@@ -23,12 +23,12 @@ csv_path = "C:/Users/dbdch/OneDrive/Desktop/Project progress/mongo_export.csv"
 df = pd.read_csv(csv_path)
 
 # expected columns 
-expected = {'position','temperature','humidity','noice','time','createdAt','updatedAt','__v'}
+expected = {'position','temperature','humidity','noise','time','createdAt','updatedAt','__v'}
 missing = expected - set(df.columns)
 if missing:
     print("Warning: dataset missing columns:", missing)
 #  proceed with columns we have; require 'time' and the three variables
-required = {'time','temperature','humidity','noice'}
+required = {'time','temperature','humidity','noise'}
 if not required.issubset(df.columns):
     raise ValueError(f"Required columns missing: {required - set(df.columns)}")
 
@@ -37,7 +37,7 @@ df['time'] = pd.to_datetime(df['time'], errors='coerce')
 df = df.set_index('time').sort_index()
 
 # convert to numeric
-df = df[['temperature','humidity','noice']].apply(pd.to_numeric, errors='coerce')
+df = df[['temperature','humidity','noise']].apply(pd.to_numeric, errors='coerce')
 
 # Resample to daily averages (daily means)
 df_daily = df.resample('D').mean()
@@ -53,7 +53,7 @@ print(df_daily.describe().T)
 
 # %%
 # 7) Correlation and pairwise relationships
-corr = df_daily[['temperature','humidity','noice']].corr()
+corr = df_daily[['temperature','humidity','noise']].corr()
 print("\nCorrelation matrix:\n", corr)
 
 plt.figure(figsize=(12,6))
